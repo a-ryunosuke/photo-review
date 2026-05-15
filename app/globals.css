@@ -1,26 +1,433 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ===========================
+   デザインシステム — ARTISM
+   ギャラリー空間モノクローム
+   =========================== */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg:         #0a0a0a;
+    --bg-card:    #111111;
+    --bg-hover:   #1a1a1a;
+    --border:     rgba(255, 255, 255, 0.08);
+    --border-mid: rgba(255, 255, 255, 0.15);
+    --gold:       #c9a84c;
+    --gold-light: #e8c97a;
+    --text-primary:   #f0ede8;
+    --text-secondary: rgba(240, 237, 232, 0.55);
+    --text-muted:     rgba(240, 237, 232, 0.3);
+    --radius-sm: 4px;
+    --radius-md: 10px;
+    --radius-lg: 18px;
+    --shadow-card: 0 1px 3px rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.4);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { height: 100%; }
+
+  body {
+    min-height: 100%;
+    background-color: var(--bg);
+    color: var(--text-primary);
+    font-family: "Noto Serif JP", "游明朝", "YuMincho", Georgia, serif;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: "Cormorant Garamond", "Noto Serif JP", serif;
+    font-weight: 300;
+    letter-spacing: 0.08em;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ===========================
+   レイアウト
+   =========================== */
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
+
+/* ===========================
+   ヘッダー
+   =========================== */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 56px 0 40px;
+  gap: 8px;
+}
+
+.header__logo {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.8rem, 8vw, 4rem);
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.header__tagline {
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.header__rule {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+  margin-top: 16px;
+}
+
+/* ===========================
+   メインコンテンツ
+   =========================== */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-bottom: 80px;
+}
+
+/* ===========================
+   DropZone
+   =========================== */
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 56px 24px;
+  border: 1px dashed var(--border-mid);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s, transform 0.2s;
+  user-select: none;
+}
+
+.dropzone:hover {
+  border-color: var(--gold);
+  background: var(--bg-hover);
+  transform: translateY(-2px);
+}
+
+.dropzone--dragging {
+  border-color: var(--gold-light);
+  background: rgba(201, 168, 76, 0.06);
+  transform: scale(1.01);
+}
+
+.dropzone__icon {
+  color: var(--gold);
+  opacity: 0.8;
+}
+
+.dropzone__primary {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+}
+
+.dropzone__secondary {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ===========================
+   Preview
+   =========================== */
+.preview {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.preview__image-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+}
+
+.preview__image {
+  object-fit: cover;
+}
+
+.preview__reset {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 100px;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.preview__reset:hover {
+  background: rgba(0,0,0,0.8);
+  border-color: rgba(255,255,255,0.5);
+}
+
+/* ===========================
+   生成ボタン
+   =========================== */
+.generate-btn {
+  width: 100%;
+  padding: 18px;
+  border: 1px solid var(--gold);
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--gold);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s, transform 0.2s, box-shadow 0.25s;
+}
+
+.generate-btn:hover:not(:disabled) {
+  background: var(--gold);
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(201, 168, 76, 0.3);
+}
+
+.generate-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ===========================
+   ローディング
+   =========================== */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 32px 0;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-phrase {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+/* ===========================
+   批評文エリア
+   =========================== */
+.critique {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  box-shadow: var(--shadow-card);
+}
+
+.critique__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.critique__label {
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.critique__streaming-badge {
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  padding: 2px 8px;
+  border: 1px solid var(--gold);
+  border-radius: 100px;
+  color: var(--gold);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.critique__body {
+  font-size: 0.95rem;
+  line-height: 2;
+  color: var(--text-primary);
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.critique__text {
+  white-space: pre-wrap;
+}
+
+/* ===========================
+   タイプライター
+   =========================== */
+.typewriter { white-space: pre-wrap; }
+
+.typewriter__cursor {
+  display: inline-block;
+  color: var(--gold);
+  animation: blink 0.8s step-end infinite;
+  margin-left: 1px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ===========================
+   批評文アクション
+   =========================== */
+.critique__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, opacity 0.2s;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--border-mid);
+  color: var(--text-secondary);
+}
+.btn--ghost:hover:not(:disabled) {
+  border-color: var(--border-mid);
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.btn--twitter {
+  background: #000;
+  border-color: rgba(255,255,255,0.2);
+  color: #fff;
+}
+.btn--twitter:hover:not(:disabled) {
+  background: #111;
+  border-color: rgba(255,255,255,0.4);
+}
+
+.btn--share {
+  background: var(--gold);
+  color: #000;
+  font-weight: 600;
+}
+.btn--share:hover:not(:disabled) {
+  background: var(--gold-light);
+}
+
+.btn__spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(0,0,0,0.3);
+  border-top-color: #000;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* ===========================
+   エラー
+   =========================== */
+.error-box {
+  padding: 16px 20px;
+  border: 1px solid rgba(255, 80, 80, 0.35);
+  border-radius: var(--radius-md);
+  background: rgba(255, 60, 60, 0.06);
+  color: #ff8080;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+/* ===========================
+   フッター
+   =========================== */
+.footer {
+  text-align: center;
+  padding: 32px 0 40px;
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* ===========================
+   スクロールバー
+   =========================== */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-mid); border-radius: 2px; }

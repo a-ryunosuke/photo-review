@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
       | "image/webp";
 
     const model = genAI.getGenerativeModel({
-      model: "gemini-2.0-flash",
+      model: "gemini-2.5-flash",
       systemInstruction: CRITIQUE_SYSTEM_PROMPT,
     });
 
@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
     });
   } catch (err) {
     console.error("[critique/route] error:", err);
-    return new Response(JSON.stringify({ error: "Internal server error" }), {
+    return new Response(JSON.stringify({ error: err instanceof Error ? err.message : "Internal server error" }), {
       status: 500,
       headers: { "Content-Type": "application/json" },
     });

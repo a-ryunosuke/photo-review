@@ -1,1 +1,21 @@
-プロンプト
+{
+  "name": "ARTISM — アンチ美術批評",
+  "short_name": "ARTISM",
+  "description": "日常の写真を現代美術批評の語彙で昇華するアプリ。",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "icons": [
+    {
+      "src": "/icon/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
