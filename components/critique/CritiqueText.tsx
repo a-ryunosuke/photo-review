@@ -1,4 +1,7 @@
+// AIテキストシェア画面
+
 "use client";
+
 
 import { useState } from "react";
 import TypeWriter from "./TypeWriter";

@@ -162,11 +162,6 @@ export default function Home() {
           </>
         )}
       </main>
-
-      {/* フッター */}
-      <footer className="footer">
-        <p>© ARTISM — すべての写真は思想を持つ</p>
-      </footer>
     </div>
   );
 }
