@@ -1,10 +1,9 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import DropZone from "@/components/upLoad/DropZone";
-import Preview from "@/components/upLoad/Preview";
 import CritiqueText from "@/components/critique/CritiqueText";
 import LoadingPhrases from "@/components/ui/LoadingPhrases";
+import UpLoad from "@/components/upLoad/UpLoad";
 
 type Stage = "idle" | "preview" | "loading" | "result" | "error";
 
@@ -99,14 +98,9 @@ export default function Home() {
 
       {/* メイン */}
       <main className="main">
-        {/* 写真エリア */}
-        {stage === "idle" && (
-          <DropZone onFile={handleFile} />
-        )}
 
-        {(stage === "preview" || stage === "loading" || stage === "result" || stage === "error") && photoDataUrl && (
-          <Preview dataUrl={photoDataUrl} onReset={handleReset} />
-        )}
+        {/* 写真アップロード */}
+        <UpLoad stage={stage} handleFile={handleFile} handleReset={handleReset} photoDataUrl={photoDataUrl} />
 
         {/* 生成ボタン */}
         {stage === "preview" && (
