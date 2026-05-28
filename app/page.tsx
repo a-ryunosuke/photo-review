@@ -3,7 +3,8 @@
 import { useState, useCallback } from "react";
 import CritiqueText from "@/components/critique/CritiqueText";
 import LoadingPhrases from "@/components/ui/LoadingPhrases";
-import UpLoad from "@/components/upLoad/UpLoad";
+import UpLoading from "@/components/upLoad/UpLoading";
+import UpLoadButton from "@/components/upLoad/UpLoadButton"
 
 type Stage = "idle" | "preview" | "loading" | "result" | "error";
 
@@ -100,18 +101,10 @@ export default function Home() {
       <main className="main">
 
         {/* 写真アップロード */}
-        <UpLoad stage={stage} handleFile={handleFile} handleReset={handleReset} photoDataUrl={photoDataUrl} />
+        <UpLoading stage={stage} handleFile={handleFile} handleReset={handleReset} photoDataUrl={photoDataUrl} />
 
         {/* 生成ボタン */}
-        {stage === "preview" && (
-          <button
-            className="generate-btn"
-            onClick={handleGenerate}
-            id="generate-btn"
-          >
-            批評を生成する
-          </button>
-        )}
+        <UpLoadButton stage={stage} handleGenerate={handleGenerate} />
 
         {/* ローディング */}
         {stage === "loading" && (

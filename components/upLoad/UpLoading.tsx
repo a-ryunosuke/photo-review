@@ -3,7 +3,7 @@
 import DropZone from "../upLoad/DropZone"
 import Preview from "../upLoad/Preview"
 
-export default function UpLoad({stage, handleFile, photoDataUrl, handleReset}) {
+export default function UpLoading({stage, handleFile, photoDataUrl, handleReset}) {
     return (
         <div>
             {stage === "idle" && (
