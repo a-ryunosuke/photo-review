@@ -1,3 +1,5 @@
+"use client"
+
 export default function UpLoadButton({ stage, handleGenerate }) {
     return (
         <div>
@@ -7,7 +9,7 @@ export default function UpLoadButton({ stage, handleGenerate }) {
             onClick={handleGenerate}
             id="generate-btn"
           >
-            批評を生成する
+            文章を生成する
           </button>
         )}
         </div>

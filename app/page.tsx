@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import CritiqueText from "@/components/critique/CritiqueText";
-import LoadingPhrases from "@/components/ui/LoadingPhrases";
+import LoadingPhrases from "@/components/loadingEffect/LoadingPhrases";
 import UpLoading from "@/components/upLoad/UpLoading";
 import UpLoadButton from "@/components/upLoad/UpLoadButton"
 
