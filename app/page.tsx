@@ -123,20 +123,6 @@ export default function Home() {
               isStreaming={isStreaming}
               photoDataUrl={photoDataUrl}
             />
-            {!isStreaming && (
-              <NewPhotoButton 
-              handleReset={handleReset}
-              />
-              // <button
-              //   className="generate-btn"
-              //   onClick={handleReset}
-              //   id="restart-btn"
-              //   style={{ marginTop: 0 }}
-              // >
-              //   別の写真で試す
-              // </button>
-
-            )}
           </>
         )}
 
