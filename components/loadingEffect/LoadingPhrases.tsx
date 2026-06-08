@@ -27,7 +27,7 @@ export default function LoadingPhrases() {
       className="loading-phrase"
       style={{  transition: "opacity 0.4s ease" }}
     >
-      批評文を生成中{PHRASES[index]}
+      文章を生成中{PHRASES[index]}
     </p>
   );
 }

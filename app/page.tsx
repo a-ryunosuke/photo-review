@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import CritiqueText from "@/components/critique/CritiqueText";
+import CritiqueText from "@/components/aiText/CritiqueText";
 import LoadingPhrases from "@/components/loadingEffect/LoadingPhrases";
 import UpLoading from "@/components/upLoad/UpLoading";
 import UpLoadButton from "@/components/upLoad/UpLoadButton"
+import { NewPhotoButton } from "@/components/aiText/NewPhotoButton";
 
 type Stage = "idle" | "preview" | "loading" | "result" | "error";
 
@@ -123,14 +124,18 @@ export default function Home() {
               photoDataUrl={photoDataUrl}
             />
             {!isStreaming && (
-              <button
-                className="generate-btn"
-                onClick={handleReset}
-                id="restart-btn"
-                style={{ marginTop: 0 }}
-              >
-                別の写真で試す
-              </button>
+              <NewPhotoButton 
+              onClick={handleReset}
+              />
+              // <button
+              //   className="generate-btn"
+              //   onClick={handleReset}
+              //   id="restart-btn"
+              //   style={{ marginTop: 0 }}
+              // >
+              //   別の写真で試す
+              // </button>
+
             )}
           </>
         )}
