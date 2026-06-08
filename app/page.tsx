@@ -125,7 +125,7 @@ export default function Home() {
             />
             {!isStreaming && (
               <NewPhotoButton 
-              onClick={handleReset}
+              handleReset={handleReset}
               />
               // <button
               //   className="generate-btn"
