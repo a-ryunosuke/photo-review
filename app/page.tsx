@@ -5,7 +5,7 @@ import CritiqueText from "@/components/aiText/CritiqueText";
 import LoadingPhrases from "@/components/loadingEffect/LoadingPhrases";
 import UpLoading from "@/components/upLoad/UpLoading";
 import UpLoadButton from "@/components/upLoad/UpLoadButton"
-import { NewPhotoButton } from "@/components/aiText/NewPhotoButton";
+import ErrorList from "@/components/error/ErrorList";
 
 type Stage = "idle" | "preview" | "loading" | "result" | "error";
 
@@ -102,12 +102,11 @@ export default function Home() {
       <main className="main">
 
         {/* 写真アップロード */}
+        {/* そのボタン */}
         <UpLoading stage={stage} handleFile={handleFile} handleReset={handleReset} photoDataUrl={photoDataUrl} />
-
-        {/* 生成ボタン */}
         <UpLoadButton stage={stage} handleGenerate={handleGenerate} />
 
-        {/* ローディング */}
+        {/* ローディングエフェクト */}
         {stage === "loading" && (
           <div className="loading-container">
             <div className="loading-spinner" aria-label="生成中" />
@@ -115,7 +114,7 @@ export default function Home() {
           </div>
         )}
 
-        {/* 批評文 */}
+        {/* AIテキスト */}
         {(stage === "result") && critique && (
           <>
             <CritiqueText
@@ -126,17 +125,13 @@ export default function Home() {
           </>
         )}
 
-        {/* エラー */}
+        {/* エラー表示 */}
         {stage === "error" && (
           <>
-            <div className="error-box" role="alert">
-              <strong>エラーが発生しました</strong><br />
-              {errorMsg}<br /><br />
-              <small>APIキーが設定されているか確認してください。</small>
-            </div>
-            <button className="generate-btn" onClick={handleReset} id="error-reset-btn">
-              やり直す
-            </button>
+          <ErrorList
+          errorMsg={errorMsg}
+          onClick={handleReset}
+           />
           </>
         )}
       </main>
