@@ -1,6 +1,9 @@
 "use client";
 
 import { useState, useCallback } from "react";
+
+import { pageStyle } from "./page.tv";
+
 import CritiqueText from "@/components/aiText/CritiqueText";
 import LoadingPhrases from "@/components/loadingEffect/LoadingPhrases";
 import UpLoading from "@/components/upLoad/UpLoading";
@@ -15,6 +18,8 @@ export default function Home() {
   const [critique, setCritique] = useState<string>("");
   const [isStreaming, setIsStreaming] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string>("");
+
+  const base = pageStyle()
 
   const handleFile = useCallback((_file: File, dataUrl: string) => {
     setPhotoDataUrl(dataUrl);
@@ -90,7 +95,7 @@ export default function Home() {
   };
 
   return (
-    <div className="layout">
+    <div className={base}>
       {/* ヘッダー */}
       <header className="header">
         <h1 className="header__logo">Artism</h1>
