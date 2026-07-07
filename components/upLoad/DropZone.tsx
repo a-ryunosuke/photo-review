@@ -1,6 +1,10 @@
 "use client";
 
 import { useRef, useState, useCallback } from "react";
+import { pageStyle } from "./dropZone.tv";
+
+const base = pageStyle
+const items = pageStyle
 
 interface DropZoneProps {
   onFile: (file: File, dataUrl: string) => void;
@@ -37,12 +41,14 @@ export default function DropZone({ onFile }: DropZoneProps) {
   };
 
   return (
-    <div
+    <div className={base()}>
+      <div
       onClick={() => inputRef.current?.click()}
       onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
       onDragLeave={() => setIsDragging(false)}
       onDrop={onDrop}
-      className={`dropzone ${isDragging ? "dropzone--dragging" : ""}`}
+      // className={`dropzone ${isDragging ? "dropzone--dragging" : ""}`}
+      className={items()}
       role="button"
       tabIndex={0}
       aria-label="写真をアップロード"
@@ -69,6 +75,7 @@ export default function DropZone({ onFile }: DropZoneProps) {
 
       <p className="dropzone__primary">写真をドロップ、またはタップして選択</p>
       <p className="dropzone__secondary">JPEG · PNG · WebP</p>
+    </div>
     </div>
   );
 }
