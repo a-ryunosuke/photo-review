@@ -3,9 +3,6 @@
 import { useRef, useState, useCallback } from "react";
 import { pageStyle } from "./dropZone.tv";
 
-const base = pageStyle
-const items = pageStyle
-
 interface DropZoneProps {
   onFile: (file: File, dataUrl: string) => void;
 }
@@ -13,6 +10,8 @@ interface DropZoneProps {
 export default function DropZone({ onFile }: DropZoneProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isDragging, setIsDragging] = useState(false);
+
+  const { base, dropzone } = pageStyle({ isDragging });
 
   const handleFile = useCallback(
     (file: File) => {
@@ -47,8 +46,7 @@ export default function DropZone({ onFile }: DropZoneProps) {
       onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
       onDragLeave={() => setIsDragging(false)}
       onDrop={onDrop}
-      // className={`dropzone ${isDragging ? "dropzone--dragging" : ""}`}
-      className={items()}
+      className={dropzone()}
       role="button"
       tabIndex={0}
       aria-label="写真をアップロード"

@@ -99,32 +99,6 @@
 /* ===========================
    DropZone
    =========================== */
-.dropzone {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 56px 24px;
-  border: 1px dashed var(--border-mid);
-  border-radius: var(--radius-lg);
-  background: var(--bg-card);
-  cursor: pointer;
-  transition: border-color 0.25s, background 0.25s, transform 0.2s;
-  user-select: none;
-}
-
-.dropzone:hover {
-  border-color: var(--gold);
-  background: var(--bg-hover);
-  transform: translateY(-2px);
-}
-
-.dropzone--dragging {
-  border-color: var(--gold-light);
-  background: rgba(201, 168, 76, 0.06);
-  transform: scale(1.01);
-}
 
 .dropzone__icon {
   color: var(--gold);
