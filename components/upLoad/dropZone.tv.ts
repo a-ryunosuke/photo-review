@@ -12,6 +12,7 @@ export const pageStyle = tv({
             "transition-all duration-200",
             "hover:border-[var(--gold)] hover:bg-[var(--bg-hover)] hover:-translate-y-[2px]"
         ].join(" ")
+        // .jpin 配列を処理し複数のCSSクラスを一つの文字列に結合して返す
     },
     variants: {
         isDragging: {

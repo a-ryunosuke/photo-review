@@ -98,9 +98,6 @@ export default function Home() {
     <div className={base}>
       {/* ヘッダー */}
       <header className="header">
-        <h1 className="header__logo">Artism</h1>
-        <p className="header__tagline">Anti-Art Critique Generator</p>
-        <div className="header__rule" aria-hidden="true" />
       </header>
 
       {/* メイン */}
